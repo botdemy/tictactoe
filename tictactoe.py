@@ -15,15 +15,48 @@ def drawboard():
     print("")
     print("3 ",board[6]," ",board[7]," ",board[8])
 
+
+def taketurn():
+    #you make a move
+    print("Player " + whoseturn + ", make your move.")
+    mymove = input()
+
+    if mymove == "a1":
+        cellnum = 0
+    elif mymove == "b1":
+        cellnum = 1
+    elif mymove == "c1":
+        cellnum = 2
+    elif mymove == "a2":
+        cellnum = 3
+    elif mymove == "b2":
+        cellnum = 4
+    elif mymove == "c2":
+        cellnum = 5
+    elif mymove == "a3":
+        cellnum = 6
+    elif mymove == "b3":
+        cellnum = 7
+    elif mymove == "c3":
+        cellnum = 8
+
+    #test
+    print(cellnum)
 # main
 board = ['.']*9
-drawboard()
+
 
 whoseturn = "X"
 gameover = False
 
+
 while not gameover:
-    taketurn(whoseturn)
+    drawboard()
+    taketurn()
+    #TODO: define when we want to exit this loop?
+    #1) when somebody wins
+    #2) when all the spots are gone
+    #else: alternate player and keep playing
     if whoseturn == "X":
         whoseturn = "O"
     else:
