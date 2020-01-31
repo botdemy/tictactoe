@@ -39,9 +39,10 @@ def taketurn():
         cellnum = 7
     elif mymove == "c3":
         cellnum = 8
-
+    else:
+        print("Invalid move. Try again.")
     #test
-    print(cellnum)
+    #print(cellnum)
 # main
 board = ['.']*9
 
