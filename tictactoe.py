@@ -17,35 +17,51 @@ def drawboard():
 
 
 def taketurn():
-    #you make a move
-    print("Player " + whoseturn + ", make your move.")
-    mymove = input()
 
-    if mymove == "a1":
-        cellnum = 0
-    elif mymove == "b1":
-        cellnum = 1
-    elif mymove == "c1":
-        cellnum = 2
-    elif mymove == "a2":
-        cellnum = 3
-    elif mymove == "b2":
-        cellnum = 4
-    elif mymove == "c2":
-        cellnum = 5
-    elif mymove == "a3":
-        cellnum = 6
-    elif mymove == "b3":
-        cellnum = 7
-    elif mymove == "c3":
-        cellnum = 8
-    else:
-        print("Invalid move. Try again.")
+    validinput = False
+
+    while not validinput:
+        #you make a move
+        print("Player " + whoseturn + ", make your move.")
+        mymove = input()
+
+        if mymove == "a1":
+            cellnum = 0
+        elif mymove == "b1":
+            cellnum = 1
+        elif mymove == "c1":
+            cellnum = 2
+        elif mymove == "a2":
+            cellnum = 3
+        elif mymove == "b2":
+            cellnum = 4
+        elif mymove == "c2":
+            cellnum = 5
+        elif mymove == "a3":
+            cellnum = 6
+        elif mymove == "b3":
+            cellnum = 7
+        elif mymove == "c3":
+            cellnum = 8
+        else:
+            #print("Invalid move. Try again.")
+            cellnum = None
+
+        if cellnum == None:
+            print("Invalid move. Try again.")
+        elif board[cellnum] != '.':
+            print("Too bad. It's taken.")
+        else:
+            board[cellnum] = whoseturn
+            validinput = True
+
+
     #test
     #print(cellnum)
+
 # main
 board = ['.']*9
-
+#board = ['.','.','.','.','.','.','.','.','.']
 
 whoseturn = "X"
 gameover = False
@@ -62,5 +78,7 @@ while not gameover:
         whoseturn = "O"
     else:
         whoseturn = "X"
+
+
 #take turns
 
