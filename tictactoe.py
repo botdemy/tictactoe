@@ -66,12 +66,29 @@ board = ['.']*9
 whoseturn = "X"
 gameover = False
 
+def winningmove():
+
+    if (board[0] == whoseturn and board[1] == whoseturn and board[2] == whoseturn) \
+    or (board[3] == whoseturn and board[4] == whoseturn and board[5] == whoseturn) \
+    or (board[6] == whoseturn and board[7] == whoseturn and board[8] == whoseturn) \
+    or (board[0] == whoseturn and board[3] == whoseturn and board[6] == whoseturn) \
+    or (board[1] == whoseturn and board[4] == whoseturn and board[7] == whoseturn) \
+    or (board[2] == whoseturn and board[5] == whoseturn and board[8] == whoseturn) \
+    or (board[0] == whoseturn and board[4] == whoseturn and board[8] == whoseturn) \
+    or (board[2] == whoseturn and board[4] == whoseturn and board[6] == whoseturn) :
+        print("Player " + whoseturn + " won! You are genious.")
+        return True
+    else:
+        return False
 
 while not gameover:
     drawboard()
     taketurn()
     #TODO: define when we want to exit this loop?
     #1) when somebody wins
+    if winningmove():
+        drawboard()
+        gameover = True
     #2) when all the spots are gone
     #else: alternate player and keep playing
     if whoseturn == "X":
