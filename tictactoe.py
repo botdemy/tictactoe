@@ -16,8 +16,8 @@ def drawboard():
     print("3 ",board[6]," ",board[7]," ",board[8])
 
 
+# take turn in getting input and mark the spot
 def taketurn():
-
     validinput = False
 
     while not validinput:
@@ -44,7 +44,6 @@ def taketurn():
         elif mymove == "c3":
             cellnum = 8
         else:
-            #print("Invalid move. Try again.")
             cellnum = None
 
         if cellnum == None:
@@ -56,16 +55,7 @@ def taketurn():
             validinput = True
 
 
-    #test
-    #print(cellnum)
-
-# main
-board = ['.']*9
-#board = ['.','.','.','.','.','.','.','.','.']
-
-whoseturn = "X"
-gameover = False
-
+# check for winning move
 def winningmove():
 
     if (board[0] == whoseturn and board[1] == whoseturn and board[2] == whoseturn) \
@@ -76,10 +66,25 @@ def winningmove():
     or (board[2] == whoseturn and board[5] == whoseturn and board[8] == whoseturn) \
     or (board[0] == whoseturn and board[4] == whoseturn and board[8] == whoseturn) \
     or (board[2] == whoseturn and board[4] == whoseturn and board[6] == whoseturn) :
+        drawboard()
         print("Player " + whoseturn + " won! You are genious.")
         return True
     else:
         return False
+
+def nospotleft():
+    if '.' in board:
+        return False
+    else:
+        drawboard()
+        print('It is a draw.')
+        return True
+
+
+# main program
+board = ['.','.','.','.','.','.','.','.','.']
+whoseturn = "X"
+gameover = False
 
 while not gameover:
     drawboard()
@@ -87,7 +92,8 @@ while not gameover:
     #TODO: define when we want to exit this loop?
     #1) when somebody wins
     if winningmove():
-        drawboard()
+        gameover = True
+    elif nospotleft():
         gameover = True
     #2) when all the spots are gone
     #else: alternate player and keep playing
@@ -97,5 +103,4 @@ while not gameover:
         whoseturn = "X"
 
 
-#take turns
 
